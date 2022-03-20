@@ -26,22 +26,18 @@ export function fetchCharacters(
       })
         .then((res) => {
           return {
-            data: {
-              characters: res.data,
-              firstPage: 0,
-              lastPage: parseLastPage(res.headers.link),
-            },
+            characters: res.data,
+            lastPage: parseLastPage(res.headers.link),
           };
         })
         .catch((error) => console.log(error));
+
       return data;
     };
 
     try {
-      const characters = await response().then(
-        (res: any) => res.data.characters
-      );
-      const lastPage = await response().then((res: any) => res.data.lastPage);
+      const characters = await response().then((res: any) => res.characters);
+      const lastPage = await response().then((res: any) => res.lastPage);
 
       dispatch(charactersActions.fetchCharacters(characters));
       dispatch(charactersActions.handleLastPage(lastPage));

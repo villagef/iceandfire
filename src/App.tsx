@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchCharacters } from "./store/fetch";
+import Layout from "./templates";
 
 function App() {
   const dispatch = useDispatch();
@@ -15,9 +16,9 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <Layout>
       <div>App</div>
-    </div>
+    </Layout>
   );
 }
 
