@@ -17,7 +17,7 @@ const initialState: IProps = {
   lastPage: 0,
   gender: "",
   name: "",
-  currentPage: 0,
+  currentPage: 1,
   rowsPerPage: 25,
   isLoading: true,
 };
