@@ -7,6 +7,7 @@ export const StyledLayout = styled.div`
   flex-direction: column;
   background: white;
   color: black;
+
 `;
 
 export const StyledMain = styled.div`
@@ -15,10 +16,11 @@ export const StyledMain = styled.div`
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
+  padding: 10px 40px;
 `;
 
 export const Header = styled.h1`
   width: 100%;
-  text-align: center;
   box-sizing: border-box;
+  padding-left: 40px;
 `;

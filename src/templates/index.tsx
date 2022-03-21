@@ -1,4 +1,5 @@
 import { FC } from "react";
+import { Link } from "react-router-dom";
 import { StyledLayout, StyledMain, Header } from "./style";
 
 interface Props {}
@@ -6,7 +7,9 @@ interface Props {}
 const Layout: FC<Props> = ({ children }) => {
   return (
     <StyledLayout>
-      <Header>Ice and Fire</Header>
+      <Link to={`/`}>
+        <Header>Ice and Fire</Header>
+      </Link>
       <StyledMain>{children}</StyledMain>
     </StyledLayout>
   );

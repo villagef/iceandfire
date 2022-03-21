@@ -66,9 +66,12 @@ export function fetchHouse(id: string) {
 
     try {
       const house = await response().then((res: any) => res.house);
+      dispatch(houseActions.toggleLoader(true));
       dispatch(houseActions.fetchHouse(house));
     } catch (error: any) {
       throw new Error(error);
+    } finally {
+      dispatch(houseActions.toggleLoader(false));
     }
   };
 }

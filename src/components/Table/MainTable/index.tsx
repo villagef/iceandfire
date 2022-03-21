@@ -19,6 +19,7 @@ import LastPageIcon from "@mui/icons-material/LastPage";
 import { TableWrapper, useStyles } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { charactersActions } from "../../../store/charactersSlice";
+import { Link } from "react-router-dom";
 
 interface TablePaginationActionsProps {
   count: number;
@@ -156,8 +157,8 @@ export default function CustomPaginationActionsTable(props: any): JSX.Element {
                 <TableCell>{row.gender}</TableCell>
                 <TableCell>{row.culture}</TableCell>
                 <TableCell>
-                  {row.allegiances.map((val: string) => (
-                    <p key={val}>{val}</p>
+                  {row.allegiances.map((val: string, index: number) => (
+                    <Link key={val+index} to={`/house/${val}`}>{val }</Link>
                   ))}
                 </TableCell>
               </TableRow>
