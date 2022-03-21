@@ -1,9 +1,23 @@
+import { BooleanLiteral } from "typescript";
+
 interface IPropsCharacter {
   character: string;
   alive: string;
   gender: string;
   culture: string;
   allegiances: string[];
+}
+
+interface IPropsHouse {
+  name: string;
+  region: string;
+  coatOfArms: string;
+  words: string;
+  titles: string;
+  seats: string;
+  hasDiedOut: string;
+  overlord: string;
+  numberOfCadetBranches: number;
 }
 
 export function createCharactersModel(props: any): IPropsCharacter[] {
@@ -63,4 +77,26 @@ export function createCharactersModel(props: any): IPropsCharacter[] {
   });
 
   return newArray;
+}
+
+export function createHouseModel(props: any): IPropsHouse {
+  const { house } = props;
+
+  const convertArrayToString = (array: string[]) => {
+    return array.length > 0 ? array.join(", ") : "Undefined";
+  };
+
+  return {
+    name: house.name ? house.name : "Undefined",
+    region: house.region ? house.region : "Undefined",
+    coatOfArms: house.coatOfArms ? house.coatOfArms : "Undefined",
+    words: house.words ? house.words : "Undefined",
+    titles: convertArrayToString(house.titles),
+    seats: convertArrayToString(house.seats),
+    hasDiedOut: house.diedOut.length ? house.diedOut : "Undefined",
+    overlord: house.overlord ? house.overlord : "Undefined",
+    numberOfCadetBranches: house.cadetBranches
+      ? house.cadetBranches.length
+      : "Undefined",
+  };
 }

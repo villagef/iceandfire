@@ -1,5 +1,6 @@
 import axios from "axios";
 import { charactersActions } from "./charactersSlice";
+import { houseActions } from "./houseSlice";
 
 const baseURL = "https://www.anapioficeandfire.com/api";
 const REGEX = /page=(\d+)/;
@@ -36,16 +37,38 @@ export function fetchCharacters(
     };
 
     try {
-      dispatch(charactersActions.toggleLoader(true));
       const characters = await response().then((res: any) => res.characters);
       const lastPage = await response().then((res: any) => res.lastPage);
-
+      dispatch(charactersActions.toggleLoader(true));
       dispatch(charactersActions.fetchCharacters(characters));
       dispatch(charactersActions.handleLastPage(lastPage));
     } catch (error: any) {
       throw new Error(error);
     } finally {
       dispatch(charactersActions.toggleLoader(false));
+    }
+  };
+}
+
+export function fetchHouse(id: string) {
+  return async (dispatch: any) => {
+    const response = async () => {
+      const data = await axios(`${baseURL}/houses/${id}`)
+        .then((res) => {
+          return {
+            house: res.data,
+          };
+        })
+        .catch((error) => console.log(error));
+
+      return data;
+    };
+
+    try {
+      const house = await response().then((res: any) => res.house);
+      dispatch(houseActions.fetchHouse(house));
+    } catch (error: any) {
+      throw new Error(error);
     }
   };
 }

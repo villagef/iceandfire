@@ -18,7 +18,10 @@ export const useStyles = makeStyles({
       backgroundColor: "#fbbc04",
     },
     "& .MuiTablePagination-displayedRows": {
-      display: "none"
+      display: "none",
+    },
+    "& .MuiPaper-root": {
+      boxShadow: "5px 5px 14px 0px rgba(101, 102, 115, 1)",
     },
   },
 });

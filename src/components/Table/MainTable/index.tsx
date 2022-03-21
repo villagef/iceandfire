@@ -30,7 +30,9 @@ interface TablePaginationActionsProps {
   ) => void;
 }
 
-function TablePaginationActions(props: TablePaginationActionsProps) {
+function TablePaginationActions(
+  props: TablePaginationActionsProps
+): JSX.Element {
   const theme = useTheme();
   const dispatch = useDispatch();
   const { count, page, rowsPerPage, onPageChange } = props;
@@ -110,7 +112,7 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
   );
 }
 
-export default function CustomPaginationActionsTable(props: any) {
+export default function CustomPaginationActionsTable(props: any): JSX.Element {
   const charactersData = useSelector((state: any) => state.characters);
   const [page, setPage] = React.useState<number>(
     charactersData.currentPage - 1
@@ -136,9 +138,9 @@ export default function CustomPaginationActionsTable(props: any) {
     dispatch(charactersActions.handleRowsPerPage(+event.target.value));
   };
   return (
-    <TableWrapper>
+    <TableWrapper className={classes.root}>
       <TableContainer component={Paper}>
-        <Table className={classes.root}>
+        <Table>
           <TableHead>
             <TableRow>
               {Object.keys(data[0]).map((column: string) => (
