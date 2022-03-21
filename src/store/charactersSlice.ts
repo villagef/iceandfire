@@ -29,11 +29,17 @@ export const charactersSlice = createSlice({
     fetchCharacters(state, action) {
       state.characters = action.payload;
     },
-    toggleLoader(state) {
-      state.isLoading = false;
+    toggleLoader(state, action) {
+      state.isLoading = action.payload;
     },
     handleLastPage(state, action) {
       state.lastPage = action.payload;
+    },
+    handleCurrentPage(state, action) {
+      state.currentPage = action.payload;
+    },
+    handleRowsPerPage(state, action) {
+      state.rowsPerPage = action.payload;
     },
   },
 });

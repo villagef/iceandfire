@@ -18,13 +18,21 @@ export function createCharactersModel(props: any): IPropsCharacter[] {
     return `${value}`;
   };
 
+  const takeNumberFromString = (value: string) => {
+    const numArr = value.match(/\d/g);
+    return numArr ? +numArr.join("") : null;
+  };
+
   const handleAlive = (character: any): string => {
     if (!character.born && !character.died) {
       return "Unknown";
     } else if (!character.born) {
       return "No";
     } else if (character.born && character.died) {
-      const value = +character.died - +character.born;
+      //DON'T UNDERSTAND HOW TO COUNT THE DIFFERENCE BASED ON THE DATASET
+      const value = takeNumberFromString(character.died)
+        ? takeNumberFromString(character.died)
+        : 0;
       return `No, died at ${value} years old`;
     } else {
       return "Yes";

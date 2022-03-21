@@ -17,7 +17,8 @@ import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 
 import { TableWrapper, useStyles } from "./style";
-
+import { useDispatch, useSelector } from "react-redux";
+import { charactersActions } from "../../../store/charactersSlice";
 
 interface TablePaginationActionsProps {
   count: number;
@@ -31,29 +32,39 @@ interface TablePaginationActionsProps {
 
 function TablePaginationActions(props: TablePaginationActionsProps) {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const { count, page, rowsPerPage, onPageChange } = props;
+  const charactersData = useSelector((state: any) => state.characters);
 
   const handleFirstPageButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     onPageChange(event, 0);
+    dispatch(charactersActions.handleCurrentPage(charactersData.firstPage));
   };
 
   const handleBackButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     onPageChange(event, page - 1);
+    dispatch(
+      charactersActions.handleCurrentPage(charactersData.currentPage - 1)
+    );
   };
 
   const handleNextButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
     onPageChange(event, page + 1);
+    dispatch(
+      charactersActions.handleCurrentPage(charactersData.currentPage + 1)
+    );
   };
 
   const handleLastPageButtonClick = (
     event: React.MouseEvent<HTMLButtonElement>
   ) => {
+    dispatch(charactersActions.handleCurrentPage(charactersData.lastPage));
     onPageChange(event, Math.max(0, Math.ceil(count / rowsPerPage) - 1));
   };
 
@@ -100,11 +111,14 @@ function TablePaginationActions(props: TablePaginationActionsProps) {
 }
 
 export default function CustomPaginationActionsTable(props: any) {
-  const [page, setPage] = React.useState(0);
+  const charactersData = useSelector((state: any) => state.characters);
+  const [page, setPage] = React.useState<number>(
+    charactersData.currentPage - 1
+  );
   const [rowsPerPage, setRowsPerPage] = React.useState(25);
   const classes = useStyles();
-
   const { data } = props;
+  const dispatch = useDispatch();
 
   const handleChangePage = (
     event: React.MouseEvent<HTMLButtonElement> | null,
@@ -116,10 +130,11 @@ export default function CustomPaginationActionsTable(props: any) {
   const handleChangeRowsPerPage = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setRowsPerPage(parseInt(event.target.value, 25));
-    setPage(1);
-  };
+    setRowsPerPage(+event.target.value);
 
+    dispatch(charactersActions.handleCurrentPage(charactersData.firstPage));
+    dispatch(charactersActions.handleRowsPerPage(+event.target.value));
+  };
   return (
     <TableWrapper>
       <TableContainer component={Paper}>
@@ -132,13 +147,17 @@ export default function CustomPaginationActionsTable(props: any) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {data.map((row: any) => (
-              <TableRow key={row.character}>
+            {data.map((row: any, index: number) => (
+              <TableRow key={row.character + index}>
                 <TableCell>{row.character}</TableCell>
                 <TableCell>{row.alive}</TableCell>
                 <TableCell>{row.gender}</TableCell>
                 <TableCell>{row.culture}</TableCell>
-                <TableCell>{row.allegiances}</TableCell>
+                <TableCell>
+                  {row.allegiances.map((val: string) => (
+                    <p key={val}>{val}</p>
+                  ))}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -146,7 +165,7 @@ export default function CustomPaginationActionsTable(props: any) {
             <TableRow>
               <TablePagination
                 rowsPerPageOptions={[10, 25, 50]}
-                count={12000}
+                count={rowsPerPage * +charactersData.lastPage}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 SelectProps={{

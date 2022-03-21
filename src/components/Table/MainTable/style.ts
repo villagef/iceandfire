@@ -17,5 +17,8 @@ export const useStyles = makeStyles({
       color: "black",
       backgroundColor: "#fbbc04",
     },
+    "& .MuiTablePagination-displayedRows": {
+      display: "none"
+    },
   },
 });

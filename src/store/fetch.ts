@@ -36,6 +36,7 @@ export function fetchCharacters(
     };
 
     try {
+      dispatch(charactersActions.toggleLoader(true));
       const characters = await response().then((res: any) => res.characters);
       const lastPage = await response().then((res: any) => res.lastPage);
 
@@ -44,7 +45,7 @@ export function fetchCharacters(
     } catch (error: any) {
       throw new Error(error);
     } finally {
-      dispatch(charactersActions.toggleLoader());
+      dispatch(charactersActions.toggleLoader(false));
     }
   };
 }
