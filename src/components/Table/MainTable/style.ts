@@ -6,11 +6,23 @@ export const TableWrapper = styled.div`
   height: 100%;
 `;
 
+export const SearchWrapper = styled.td`
+  width: 100%
+  height: auto;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
+
 export const useStyles = makeStyles({
   root: {
+    "& .MuiTable-root": {
+      background: "#f7fbff",
+    },
     "& .MuiTableCell-head": {
       color: "white",
-      backgroundColor: "#4285f4",
+      background: "linear-gradient(90deg, rgba(0,92,169,1) 0%, rgba(0,99,182,1) 100%)",
     },
     "& .MuiTableCell-footer": {
       color: "black",

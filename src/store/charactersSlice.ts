@@ -41,6 +41,12 @@ export const charactersSlice = createSlice({
     handleRowsPerPage(state, action) {
       state.rowsPerPage = action.payload;
     },
+    handleGenderFilter(state, action) {
+      state.gender = action.payload;
+    },
+    handleNameFilter(state, action) {
+      state.name = action.payload;
+    },
   },
 });
 

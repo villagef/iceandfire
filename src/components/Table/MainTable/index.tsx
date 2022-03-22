@@ -16,10 +16,13 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 
-import { TableWrapper, useStyles } from "./style";
+import { SearchWrapper, TableWrapper, useStyles } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { charactersActions } from "../../../store/charactersSlice";
 import { Link } from "react-router-dom";
+import DropdownSearch from "../../Dropdown";
+import InputSearch from "../../Input"
+import { useState } from "react";
 
 interface TablePaginationActionsProps {
   count: number;
@@ -115,10 +118,8 @@ function TablePaginationActions(
 
 export default function CustomPaginationActionsTable(props: any): JSX.Element {
   const charactersData = useSelector((state: any) => state.characters);
-  const [page, setPage] = React.useState<number>(
-    charactersData.currentPage - 1
-  );
-  const [rowsPerPage, setRowsPerPage] = React.useState(25);
+  const [page, setPage] = useState<number>(charactersData.currentPage - 1);
+  const [rowsPerPage, setRowsPerPage] = useState(25);
   const classes = useStyles();
   const { data } = props;
   const dispatch = useDispatch();
@@ -144,6 +145,12 @@ export default function CustomPaginationActionsTable(props: any): JSX.Element {
         <Table>
           <TableHead>
             <TableRow>
+              <SearchWrapper>
+                <DropdownSearch />
+                <InputSearch />
+              </SearchWrapper>
+            </TableRow>
+            <TableRow>
               {Object.keys(data[0]).map((column: string) => (
                 <TableCell key={column}>{column.toUpperCase()}</TableCell>
               ))}
@@ -158,7 +165,9 @@ export default function CustomPaginationActionsTable(props: any): JSX.Element {
                 <TableCell>{row.culture}</TableCell>
                 <TableCell>
                   {row.allegiances.map((val: string, index: number) => (
-                    <Link key={val+index} to={`/house/${val}`}>{val }</Link>
+                    <Link key={val + index} to={`/house/${val}`}>
+                      {val}
+                    </Link>
                   ))}
                 </TableCell>
               </TableRow>

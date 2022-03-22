@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchCharacters(currentPage, rowsPerPage, gender, name));
-  }, [currentPage, rowsPerPage]);
+  }, [currentPage, rowsPerPage, gender, name]);
 
   return <RouterWrapper />;
 }
