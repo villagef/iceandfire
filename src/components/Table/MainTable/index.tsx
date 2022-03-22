@@ -16,7 +16,7 @@ import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
 import LastPageIcon from "@mui/icons-material/LastPage";
 
-import { SearchWrapper, TableWrapper, useStyles } from "./style";
+import { SearchWrapper, TableWrapper, TableLink, useStyles } from "./style";
 import { useDispatch, useSelector } from "react-redux";
 import { charactersActions } from "../../../store/charactersSlice";
 import { Link } from "react-router-dom";
@@ -166,7 +166,9 @@ export default function CustomPaginationActionsTable(props: any): JSX.Element {
                 <TableCell>
                   {row.allegiances.map((val: string, index: number) => (
                     <Link key={val + index} to={`/house/${val}`}>
-                      {val}
+                      {
+                        <TableLink>{val}</TableLink>
+                      }
                     </Link>
                   ))}
                 </TableCell>

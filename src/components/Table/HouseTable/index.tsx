@@ -1,9 +1,10 @@
-import { HouseTableWrapper, HouseTableRow, Title } from "./style";
+import { HouseTableWrapper, HouseTableRow, Title, HouseTableHeader } from "./style";
 
 export default function HouseTable(props: any): JSX.Element {
   const { data } = props;
   return (
     <HouseTableWrapper>
+      <HouseTableHeader>House Details</HouseTableHeader>
       <HouseTableRow>
         <Title>Name: </Title>
         {data.name}

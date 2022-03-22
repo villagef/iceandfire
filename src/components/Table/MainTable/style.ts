@@ -15,6 +15,13 @@ export const SearchWrapper = styled.td`
   align-items: center;
 `;
 
+export const TableLink = styled.h4`
+display: inline-block;
+  margin: 0;
+  padding-right: 8px;
+  cursor: pointer;
+`;
+
 export const useStyles = makeStyles({
   root: {
     "& .MuiTable-root": {

@@ -12,6 +12,15 @@ export const HouseTableWrapper = styled.div`
   border-radius: 10px;
 `;
 
+export const HouseTableHeader = styled.h1`
+  width: 80%;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 2rem;
+  color: #484848;
+`;
+
 export const HouseTableRow = styled.div`
   width: 80%;
   padding: 10px;
