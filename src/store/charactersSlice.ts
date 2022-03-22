@@ -5,7 +5,7 @@ interface IProps {
   firstPage: number;
   lastPage: number;
   gender: string;
-  name: string;
+  culture: string;
   currentPage: number;
   rowsPerPage: number;
   isLoading: boolean;
@@ -16,7 +16,7 @@ const initialState: IProps = {
   firstPage: 1,
   lastPage: 0,
   gender: "",
-  name: "",
+  culture: "",
   currentPage: 1,
   rowsPerPage: 25,
   isLoading: true,
@@ -44,8 +44,8 @@ export const charactersSlice = createSlice({
     handleGenderFilter(state, action) {
       state.gender = action.payload;
     },
-    handleNameFilter(state, action) {
-      state.name = action.payload;
+    handleCultureFilter(state, action) {
+      state.culture = action.payload;
     },
   },
 });

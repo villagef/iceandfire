@@ -17,13 +17,13 @@ export function fetchCharacters(
   pageNumber: number,
   pageSize: number,
   gender: string,
-  name: string
+  culture: string
 ) {
   return async (dispatch: any) => {
     const response = async () => {
       const data = await axios({
         baseURL,
-        url: `/characters?page=${pageNumber}&pageSize=${pageSize}&gender=${gender}&name=${name}`,
+        url: `/characters?page=${pageNumber}&pageSize=${pageSize}&gender=${gender}&culture=${culture}`,
       })
         .then((res) => {
           return {

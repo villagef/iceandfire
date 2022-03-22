@@ -18,13 +18,13 @@ const RouterWrapper = () => {
 function App() {
   const dispatch = useDispatch();
   const gender = useSelector((state: any) => state.characters.gender);
-  const name = useSelector((state: any) => state.characters.name);
+  const culture = useSelector((state: any) => state.characters.culture);
   const currentPage = useSelector((state: any) => state.characters.currentPage);
   const rowsPerPage = useSelector((state: any) => state.characters.rowsPerPage);
 
   useEffect(() => {
-    dispatch(fetchCharacters(currentPage, rowsPerPage, gender, name));
-  }, [currentPage, rowsPerPage, gender, name]);
+    dispatch(fetchCharacters(currentPage, rowsPerPage, gender, culture));
+  }, [currentPage, rowsPerPage, gender, culture]);
 
   return <RouterWrapper />;
 }

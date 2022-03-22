@@ -11,15 +11,15 @@ const InputSearch = (): JSX.Element => {
   const handleChange = (e: any) => {
     e.preventDefault();
     const value = textFieldRef.current.value;
-    dispatch(charactersActions.handleNameFilter(value));
+    dispatch(charactersActions.handleCultureFilter(value));
     textFieldRef.current.value = "";
   };
 
   return (
     <form onSubmit={handleChange}>
       <TextField
-        id="name"
-        label="Search by name"
+        id="culture"
+        label="Search by culture"
         variant="outlined"
         inputRef={textFieldRef}
       />
@@ -35,4 +35,4 @@ const InputSearch = (): JSX.Element => {
   );
 };
 
-export default memo(InputSearch);
+export default InputSearch;
