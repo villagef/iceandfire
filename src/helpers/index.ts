@@ -54,14 +54,11 @@ export function createCharactersModel(props: any): IPropsCharacter[] {
   };
 
   const handleAllegiances = (character: any): string[] => {
-    const array: string[] = [];
-
-    character.allegiances &&
-      character.allegiances.map((url: string) => {
-        const arr = url.split("/");
-        const value = arr.at(-1);
-        value && array.push(value);
-      });
+    const array = character.allegiances.map((url: string) => {
+      const arr = url.split("/");
+      const value = arr.at(-1);
+      return value;
+    });
 
     return array;
   };

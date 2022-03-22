@@ -141,6 +141,7 @@ export default function CustomPaginationActionsTable(props: any): JSX.Element {
     dispatch(charactersActions.handleCurrentPage(charactersData.firstPage));
     dispatch(charactersActions.handleRowsPerPage(+event.target.value));
   };
+
   return (
     <TableWrapper className={classes.root}>
       <TableContainer component={Paper}>
@@ -166,11 +167,13 @@ export default function CustomPaginationActionsTable(props: any): JSX.Element {
                 <TableCell>{row.gender}</TableCell>
                 <TableCell>{row.culture}</TableCell>
                 <TableCell>
-                  {row.allegiances.map((val: string, index: number) => (
-                    <Link key={val + index} to={`/house/${val}`}>
-                      {<TableLink>{val}</TableLink>}
-                    </Link>
-                  ))}
+                  {row.allegiances.length > 0
+                    ? row.allegiances.map((val: string, index: number) => (
+                        <Link key={val + index} to={`/house/${val}`}>
+                          {<TableLink>{val}</TableLink>}
+                        </Link>
+                      ))
+                    : "No allegiances"}
                 </TableCell>
               </TableRow>
             ))}
