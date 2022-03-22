@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { charactersActions } from "../../../store/charactersSlice";
 import { Link } from "react-router-dom";
 import DropdownSearch from "../../Dropdown";
-import InputSearch from "../../Input"
+import InputSearch from "../../Input";
 import { useState } from "react";
 
 interface TablePaginationActionsProps {
@@ -119,7 +119,9 @@ function TablePaginationActions(
 export default function CustomPaginationActionsTable(props: any): JSX.Element {
   const charactersData = useSelector((state: any) => state.characters);
   const [page, setPage] = useState<number>(charactersData.currentPage - 1);
-  const [rowsPerPage, setRowsPerPage] = useState(25);
+  const [rowsPerPage, setRowsPerPage] = useState<number>(
+    charactersData.rowsPerPage
+  );
   const classes = useStyles();
   const { data } = props;
   const dispatch = useDispatch();
@@ -166,9 +168,7 @@ export default function CustomPaginationActionsTable(props: any): JSX.Element {
                 <TableCell>
                   {row.allegiances.map((val: string, index: number) => (
                     <Link key={val + index} to={`/house/${val}`}>
-                      {
-                        <TableLink>{val}</TableLink>
-                      }
+                      {<TableLink>{val}</TableLink>}
                     </Link>
                   ))}
                 </TableCell>
