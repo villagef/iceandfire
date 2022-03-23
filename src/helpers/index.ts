@@ -25,7 +25,7 @@ export function createCharactersModel(props: any): IPropsCharacter[] {
   const newArray: any = [];
 
   const handleCharacter = (character: any): string => {
-    const value = [character.culture, ...character.aliases].filter(
+    const value = [character.name, ...character.aliases].filter(
       (val) => val !== ""
     );
 
